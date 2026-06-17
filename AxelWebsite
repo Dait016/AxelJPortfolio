@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axel Jansegers | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter','Noto Sans JP','Noto Sans KR',sans-serif;
+    background:#0c0c0d;
+    color:white;
+    line-height:1.7;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+/* NAVIGATION */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    backdrop-filter:blur(15px);
+    background:rgba(15,15,15,0.75);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:1.2rem;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    font-size:0.95rem;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#c9a876;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:26px;
+}
+
+/* LANGUAGE SWITCHER */
+
+.lang-switch{
+    position:relative;
+}
+
+.lang-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+    font-family:inherit;
+    font-size:.82rem;
+    letter-spacing:.5px;
+    padding:8px 14px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.lang-btn:hover{
+    border-color:rgba(201,168,118,0.6);
+    color:#c9a876;
+}
+
+.lang-btn .chev{
+    font-size:.6rem;
+    transition:transform .25s ease;
+}
+
+.lang-switch.open .lang-btn .chev{
+    transform:rotate(180deg);
+}
+
+.lang-menu{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+    min-width:140px;
+    background:#161616;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px;
+    overflow:hidden;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-8px);
+    transition:.25s ease;
+    box-shadow:0 14px 34px rgba(0,0,0,.45);
+}
+
+.lang-switch.open .lang-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.lang-option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:11px 16px;
+    background:transparent;
+    border:none;
+    color:#d8d8d8;
+    font-family:inherit;
+    font-size:.88rem;
+    text-align:left;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.lang-option:hover{
+    background:rgba(201,168,118,0.12);
+    color:#f1ece0;
+}
+
+.lang-option.active{
+    color:#c9a876;
+}
+
+.lang-option .check{
+    opacity:0;
+    font-size:.85rem;
+}
+
+.lang-option.active .check{
+    opacity:1;
+}
+
+@media(max-width:768px){
+    .nav-links{
+        display:none;
+    }
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 80px;
+    position:relative;
+    overflow:hidden;
+    background:#0c0c0d;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(ellipse 70% 55% at 30% 20%, rgba(201,168,118,0.16), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 75% 80%, rgba(139,58,58,0.14), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255,255,255,0.03), transparent 70%);
+    animation:drift 22s ease-in-out infinite alternate;
+    pointer-events:none;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, transparent 1px, transparent 2px);
+    pointer-events:none;
+    opacity:.5;
+}
+
+@keyframes drift{
+    0%{
+        transform:translate(0,0) scale(1);
+    }
+    100%{
+        transform:translate(-2%,2%) scale(1.06);
+    }
+}
+
+.hero-content{
+    max-width:800px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    font-size:.75rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#c9a876;
+    margin-bottom:28px;
+    opacity:0;
+    animation:riseFade .9s ease forwards;
+    animation-delay:.1s;
+}
+
+.hero-kicker::before,
+.hero-kicker::after{
+    content:'';
+    width:36px;
+    height:1px;
+    background:rgba(201,168,118,0.6);
+}
+
+.hero h1{
+    font-family:'Cormorant Garamond','Noto Sans JP','Noto Sans KR', serif;
+    font-size:5.2rem;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:18px;
+    opacity:0;
+    animation:riseFade 1s ease forwards;
+    animation-delay:.25s;
+}
+
+.hero p{
+    color:#c9c9c9;
+    font-size:1.05rem;
+    letter-spacing:.5px;
+    opacity:0;
+    animation:riseFade 1s ease forwards;
+    animation-delay:.45s;
+}
+
+.hero p .sep{
+    color:#c9a876;
+    margin:0 10px;
+}
+
+@keyframes riseFade{
+    from{
+        opacity:0;
+        transform:translateY(16px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.hero-btn{
+    display:inline-block;
+    margin-top:40px;
+    padding:14px 34px;
+    border:1px solid rgba(201,168,118,0.4);
+    border-radius:50px;
+    transition:.35s;
+    font-size:.9rem;
+    letter-spacing:1px;
+    opacity:0;
+    animation:riseFade 1s ease forwards;
+    animation-delay:.65s;
+}
+
+.hero-btn:hover{
+    transform:translateY(-3px);
+    background:#c9a876;
+    border-color:#c9a876;
+    color:#0c0c0d;
+}
+
+@media(prefers-reduced-motion:reduce){
+    .hero::before{
+        animation:none;
+    }
+    .hero-kicker,.hero h1,.hero p,.hero-btn{
+        animation:none;
+        opacity:1;
+    }
+}
+
+/* SECTIONS */
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:100px 25px;
+}
+
+.section-title{
+    font-family:'Cormorant Garamond','Noto Sans JP','Noto Sans KR', serif;
+    font-size:2.3rem;
+    margin-bottom:40px;
+    font-weight:600;
+}
+
+/* GALLERY */
+
+.gallery-section{
+    margin-bottom:80px;
+}
+
+.gallery-section h3{
+    margin-bottom:25px;
+    font-size:1.3rem;
+    font-weight:500;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.gallery-grid.two{
+    max-width:700px;
+    margin:auto;
+}
+
+.gallery-item{
+    overflow:hidden;
+    border-radius:18px;
+    cursor:pointer;
+    position:relative;
+    background:#151515;
+}
+
+.gallery-item img{
+    height:420px;
+    object-fit:cover;
+    transition:transform .6s ease;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
+}
+
+.gallery-item::after{
+    content:'View';
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.35);
+    opacity:0;
+    transition:.3s;
+    font-size:1rem;
+    letter-spacing:1px;
+    pointer-events:none;
+}
+
+.gallery-item:hover::after{
+    opacity:1;
+}
+
+/* ABOUT */
+
+.about-wrap{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:60px;
+}
+
+.about-mark{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+}
+
+.about-mark .stamp{
+    width:54px;
+    height:54px;
+    border:1px solid rgba(139,58,58,0.55);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Cormorant Garamond','Noto Sans JP','Noto Sans KR', serif;
+    font-size:1.6rem;
+    color:#c47f7f;
+    letter-spacing:0;
+}
+
+.about-mark .rule{
+    width:1px;
+    flex:1;
+    background:linear-gradient(to bottom, rgba(201,168,118,0.6), transparent);
+    min-height:80px;
+}
+
+.about-mark .label{
+    font-size:.75rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#8a8a8a;
+    writing-mode:vertical-rl;
+}
+
+.about-content{
+    max-width:850px;
+    color:#d4d4d4;
+}
+
+.about-lead{
+    font-family:'Cormorant Garamond','Noto Sans JP','Noto Sans KR', serif;
+    font-size:1.7rem;
+    font-weight:500;
+    color:#f1ece0;
+    margin-bottom:30px;
+    line-height:1.5;
+}
+
+.about-content p{
+    margin-bottom:22px;
+    font-size:1.02rem;
+}
+
+.about-content p:last-child{
+    margin-bottom:0;
+}
+
+@media(max-width:768px){
+    .about-wrap{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+    .about-mark{
+        flex-direction:row;
+        align-items:center;
+    }
+    .about-mark .rule{
+        width:auto;
+        flex:1;
+        height:1px;
+        min-height:0;
+        background:linear-gradient(to right, rgba(201,168,118,0.6), transparent);
+    }
+    .about-mark .label{
+        writing-mode:horizontal-tb;
+    }
+}
+
+/* MEASUREMENTS */
+
+.measurements{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.measure-card{
+    background:#161616;
+    padding:25px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.measure-card h4{
+    margin-bottom:8px;
+    color:#a5a5a5;
+    font-weight:500;
+}
+
+/* CONTACT */
+
+.contact{
+    text-align:center;
+}
+
+.contact p{
+    margin-bottom:12px;
+}
+
+.socials{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.socials a{
+    padding:12px 22px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:50px;
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:white;
+    color:black;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#888;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:5000;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal img{
+    width:auto;
+    height:auto;
+    max-width:90%;
+    max-height:85vh;
+    border-radius:15px;
+    object-fit:contain;
+}
+
+.close-btn{
+    position:absolute;
+    top:25px;
+    right:35px;
+    font-size:40px;
+    cursor:pointer;
+}
+
+.arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:55px;
+    cursor:pointer;
+    user-select:none;
+    padding:15px;
+}
+
+.prev{
+    left:30px;
+}
+
+.next{
+    right:30px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.7rem;
+}
+
+.nav-links{
+    gap:15px;
+    font-size:.85rem;
+}
+
+.arrow{
+    font-size:40px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">AXEL JANSEGERS</div>
+
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#home" data-i18n="nav.home">Home</a>
+                <a href="#pictures" data-i18n="nav.pictures">Pictures</a>
+                <a href="#about" data-i18n="nav.about">About</a>
+                <a href="#measurements" data-i18n="nav.measurements">Measurements</a>
+                <a href="#contact" data-i18n="nav.contact">Contact</a>
+            </div>
+
+            <div class="lang-switch" id="langSwitch">
+                <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="langBtnLabel">EN</span>
+                    <span class="chev">&#9662;</span>
+                </button>
+
+                <div class="lang-menu" id="langMenu" role="listbox">
+                    <button class="lang-option active" data-lang="en" role="option" aria-selected="true">
+                        <span>English</span><span class="check">&#10003;</span>
+                    </button>
+                    <button class="lang-option" data-lang="ja" role="option" aria-selected="false">
+                        <span>日本語</span><span class="check">&#10003;</span>
+                    </button>
+                    <button class="lang-option" data-lang="ko" role="option" aria-selected="false">
+                        <span>한국어</span><span class="check">&#10003;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-kicker" data-i18n="hero.kicker">Portfolio</div>
+
+        <h1>Axel Jansegers</h1>
+        <p>
+            <span data-i18n="hero.role">Aspiring Model</span> <span class="sep">&middot;</span> <span data-i18n="hero.location">Belgium</span> <span class="sep">&middot;</span> <span data-i18n="hero.inspired">Inspired by Japanese &amp; Korean Fashion</span>
+        </p>
+
+        <a href="#pictures" class="hero-btn" data-i18n="hero.cta">
+            View Portfolio
+        </a>
+    </div>
+</section>
+
+<section id="pictures">
+
+    <h2 class="section-title" data-i18n="pictures.title">Portfolio</h2>
+
+    <div class="gallery-section">
+        <h3 data-i18n="pictures.bodyHead">Body & Head</h3>
+
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="PicsModel/Axel Looking In Camera Crouched.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel Looking Sideways Longsleeve.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel Crouched Knees Visable And Smiling.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel Looking Front Long Sleeve Hands Down.JPG" alt=""></div>
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h3 data-i18n="pictures.closeUp">Close-Up Head</h3>
+
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="PicsModel/Axel Tshirt Looking In Cam.jpg" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel Looking Down Shirt Smile.jpg" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel Looking Sideways Neutral Shirt.jpg" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel Looking Sideways Holding Hair Shirt.jpg" alt=""></div>
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h3 data-i18n="pictures.outside">Outside</h3>
+
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="PicsModel/MainImage.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5186.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5188.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5192.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5207.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5209.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5210.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/IMG_5208.JPG" alt=""></div>
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h3 data-i18n="pictures.twin">With My Twin Brother</h3>
+
+        <div class="gallery-grid two">
+            <div class="gallery-item"><img src="PicsModel/Axel & Maxim Hands Behind.JPG" alt=""></div>
+            <div class="gallery-item"><img src="PicsModel/Axel & Maxim Hands In Pockets.JPG" alt=""></div>
+        </div>
+    </div>
+
+</section>
+
+<section id="about">
+
+    <h2 class="section-title" data-i18n="about.title">About Me</h2>
+
+    <div class="about-wrap">
+
+        <div class="about-mark">
+            <div class="stamp">A</div>
+            <div class="rule"></div>
+            <div class="label" data-i18n="about.label">Profile</div>
+        </div>
+
+        <div class="about-content">
+
+            <p class="about-lead" data-i18n="about.lead">
+                22 years old, based in Belgium, at the beginning of a modeling journey shaped by Japanese and Korean fashion.
+            </p>
+
+            <p data-i18n="about.p1">
+                I’m currently at the beginning of my modeling journey, focused on gaining experience, developing my style, and building a strong portfolio.
+            </p>
+
+            <p data-i18n="about.p2">
+                Japanese and Korean fashion has always interested me. What draws me to it is the versatility and attention to detail, the way an outfit can feel effortless while still making a statement.
+            </p>
+
+            <p data-i18n="about.p3">
+                Whether it's streetwear, contemporary casual looks, or more formal styling, I appreciate how fashion can express personality and confidence.
+            </p>
+
+            <p data-i18n="about.p4">
+                As I continue to develop as a model, I'm interested in exploring the connection between fashion, culture, and individual style, while building experience across different concepts and creative directions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="measurements">
+
+    <h2 class="section-title" data-i18n="measurements.title">Measurements & Details</h2>
+
+    <div class="measurements">
+
+        <div class="measure-card">
+            <h4 data-i18n="measurements.waist">Waist</h4>
+            <p>74 cm</p>
+        </div>
+
+        <div class="measure-card">
+            <h4 data-i18n="measurements.torso">Torso</h4>
+            <p>86 cm</p>
+        </div>
+
+        <div class="measure-card">
+            <h4 data-i18n="measurements.hair">Hair Color</h4>
+            <p data-i18n="measurements.hairValue">Brown</p>
+        </div>
+
+        <div class="measure-card">
+            <h4 data-i18n="measurements.eye">Eye Color</h4>
+            <p data-i18n="measurements.eyeValue">Brown</p>
+        </div>
+
+        <div class="measure-card">
+            <h4 data-i18n="measurements.weight">Weight</h4>
+            <p>64.2 kg</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact">
+
+    <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+
+    <div class="contact">
+
+        <p><span data-i18n="contact.email">Email</span>: axel.jansgers@gmail.com</p>
+        <p><span data-i18n="contact.phone">Phone</span>: +32 468 27 88 51</p>
+
+        <div class="socials">
+
+            <a href="https://instagram.com/axel_jansegers" target="_blank">
+                Instagram
+            </a>
+
+            <a href="https://www.linkedin.com/in/axel-jansegers/" target="_blank">
+                LinkedIn
+            </a>
+
+            <a href="mailto:axel.jansgers@gmail.com" data-i18n="contact.emailLink">
+                Email
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Axel Jansegers
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+    <span class="close-btn">&times;</span>
+
+    <div class="arrow prev">&#10094;</div>
+
+    <img id="modalImg">
+
+    <div class="arrow next">&#10095;</div>
+</div>
+
+<script>
+
+/* ===================== TRANSLATIONS ===================== */
+
+const translations = {
+    en:{
+        "nav.home":"Home",
+        "nav.pictures":"Pictures",
+        "nav.about":"About",
+        "nav.measurements":"Measurements",
+        "nav.contact":"Contact",
+        "hero.kicker":"Portfolio",
+        "hero.role":"Aspiring Model",
+        "hero.location":"Belgium",
+        "hero.inspired":"Inspired by Japanese & Korean Fashion",
+        "hero.cta":"View Portfolio",
+        "pictures.title":"Portfolio",
+        "pictures.bodyHead":"Body & Head",
+        "pictures.closeUp":"Close-Up Head",
+        "pictures.outside":"Outside",
+        "pictures.twin":"With My Twin Brother",
+        "about.title":"About Me",
+        "about.label":"Profile",
+        "about.lead":"22 years old, based in Belgium, at the beginning of a modeling journey shaped by Japanese and Korean fashion.",
+        "about.p1":"I’m currently at the beginning of my modeling journey, focused on gaining experience, developing my style, and building a strong portfolio.",
+        "about.p2":"Japanese and Korean fashion has always interested me. What draws me to it is the versatility and attention to detail, the way an outfit can feel effortless while still making a statement.",
+        "about.p3":"Whether it's streetwear, contemporary casual looks, or more formal styling, I appreciate how fashion can express personality and confidence.",
+        "about.p4":"As I continue to develop as a model, I'm interested in exploring the connection between fashion, culture, and individual style, while building experience across different concepts and creative directions.",
+        "measurements.title":"Measurements & Details",
+        "measurements.waist":"Waist",
+        "measurements.torso":"Torso",
+        "measurements.hair":"Hair Color",
+        "measurements.hairValue":"Brown",
+        "measurements.eye":"Eye Color",
+        "measurements.eyeValue":"Brown",
+        "measurements.weight":"Weight",
+        "contact.title":"Contact",
+        "contact.email":"Email",
+        "contact.phone":"Phone",
+        "contact.emailLink":"Email"
+    },
+    ja:{
+        "nav.home":"ホーム",
+        "nav.pictures":"写真",
+        "nav.about":"プロフィール",
+        "nav.measurements":"サイズ詳細",
+        "nav.contact":"お問い合わせ",
+        "hero.kicker":"ポートフォリオ",
+        "hero.role":"駆け出しモデル",
+        "hero.location":"ベルギー",
+        "hero.inspired":"日本と韓国のファッションに影響を受けています",
+        "hero.cta":"ポートフォリオを見る",
+        "pictures.title":"ポートフォリオ",
+        "pictures.bodyHead":"全身・顔",
+        "pictures.closeUp":"顔のクローズアップ",
+        "pictures.outside":"屋外",
+        "pictures.twin":"双子の兄弟と一緒に",
+        "about.title":"プロフィール",
+        "about.label":"プロフィール",
+        "about.lead":"22歳、ベルギー在住。日本と韓国のファッションに影響を受けたモデル活動を始めたばかりです。",
+        "about.p1":"現在はモデルとしての活動を始めた段階で、経験を積みながら自分のスタイルを磨き、しっかりとしたポートフォリオを作ることに力を入れています。",
+        "about.p2":"日本と韓国のファッションには昔から興味があります。その多様性と細部へのこだわり、力を入れすぎていないのに存在感のあるスタイルに魅力を感じています。",
+        "about.p3":"ストリートウェアでも、カジュアルな普段着でも、よりフォーマットなスタイルでも、ファッションが個性や自信を表現できることに価値を感じています。",
+        "about.p4":"モデルとして成長を続ける中で、ファッションと文化、そして個人のスタイルとのつながりを探求し、さまざまなコンセプトや創作の方向性を通して経験を積んでいきたいと考えています。",
+        "measurements.title":"サイズ・詳細情報",
+        "measurements.waist":"ウエスト",
+        "measurements.torso":"トルソー",
+        "measurements.hair":"髪の色",
+        "measurements.hairValue":"ブラウン",
+        "measurements.eye":"瞳の色",
+        "measurements.eyeValue":"ブラウン",
+        "measurements.weight":"体重",
+        "contact.title":"お問い合わせ",
+        "contact.email":"メール",
+        "contact.phone":"電話番号",
+        "contact.emailLink":"メール"
+    },
+    ko:{
+        "nav.home":"홈",
+        "nav.pictures":"사진",
+        "nav.about":"소개",
+        "nav.measurements":"신체 정보",
+        "nav.contact":"연락처",
+        "hero.kicker":"포트폴리오",
+        "hero.role":"신인 모델",
+        "hero.location":"벨기에",
+        "hero.inspired":"일본과 한국 패션에서 영감을 받았습니다",
+        "hero.cta":"포트폴리오 보기",
+        "pictures.title":"포트폴리오",
+        "pictures.bodyHead":"전신 & 얼굴",
+        "pictures.closeUp":"얼굴 클로즈업",
+        "pictures.outside":"야외",
+        "pictures.twin":"쌍둥이 형제와 함께",
+        "about.title":"소개",
+        "about.label":"프로필",
+        "about.lead":"22세, 벨기에 거주. 일본과 한국 패션에 영향을 받아 모델 활동을 막 시작했습니다.",
+        "about.p1":"현재 모델로서의 여정을 막 시작한 단계로, 경험을 쌓고 저만의 스타일을 만들어가며 좋은 포트폴리오를 만드는 데 집중하고 있습니다.",
+        "about.p2":"일본과 한국 패션에는 늘 관심이 있었습니다. 다양성과 세심함, 힘을 빼면서도 분명한 인상을 남기는 스타일링에 매력을 느낍니다.",
+        "about.p3":"스트리트웨어든, 캐주얼한 일상 룩이든, 더 포멀한 스타일링이든, 패션이 개성과 자신감을 표현할 수 있다는 점이 좋습니다.",
+        "about.p4":"모델로서 계속 성장해나가면서, 패션과 문화, 개인의 스타일 사이의 연결을 탐구하고 다양한 콘셉트와 크리에이티브한 방향성 속에서 경험을 쌓아가고 싶습니다.",
+        "measurements.title":"신체 정보 & 디테일",
+        "measurements.waist":"허리",
+        "measurements.torso":"상체 길이",
+        "measurements.hair":"머리 색",
+        "measurements.hairValue":"브라운",
+        "measurements.eye":"눈동자 색",
+        "measurements.eyeValue":"브라운",
+        "measurements.weight":"체중",
+        "contact.title":"연락처",
+        "contact.email":"이메일",
+        "contact.phone":"전화번호",
+        "contact.emailLink":"이메일"
+    }
+};
+
+const langLabels = { en:"EN", ja:"日本語", ko:"한국어" };
+
+function applyLanguage(lang){
+
+    const dict = translations[lang] || translations.en;
+
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+
+        const key = el.getAttribute('data-i18n');
+
+        if(dict[key]){
+            el.textContent = dict[key];
+        }
+
+    });
+
+    document.documentElement.lang = lang;
+    document.getElementById('langBtnLabel').textContent = langLabels[lang];
+
+    document.querySelectorAll('.lang-option').forEach(btn=>{
+        const isActive = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+}
+
+const langSwitch = document.getElementById('langSwitch');
+const langBtn = document.getElementById('langBtn');
+
+langBtn.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    const isOpen = langSwitch.classList.toggle('open');
+    langBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+document.querySelectorAll('.lang-option').forEach(btn=>{
+
+    btn.addEventListener('click',()=>{
+
+        applyLanguage(btn.getAttribute('data-lang'));
+        langSwitch.classList.remove('open');
+        langBtn.setAttribute('aria-expanded','false');
+
+    });
+
+});
+
+document.addEventListener('click',(e)=>{
+    if(!langSwitch.contains(e.target)){
+        langSwitch.classList.remove('open');
+        langBtn.setAttribute('aria-expanded','false');
+    }
+});
+
+document.addEventListener('keydown',(e)=>{
+    if(e.key === "Escape"){
+        langSwitch.classList.remove('open');
+        langBtn.setAttribute('aria-expanded','false');
+    }
+});
+
+/* ===================== GALLERY / MODAL ===================== */
+
+const galleryItems = document.querySelectorAll('.gallery-item');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+
+let currentIndex = 0;
+
+const imageArray = [...galleryItems].map(item => item.querySelector('img'));
+
+galleryItems.forEach((item,index)=>{
+
+    item.addEventListener('click',()=>{
+
+        currentIndex=index;
+        modal.classList.add('active');
+        modalImg.src=imageArray[index].src;
+
+    });
+
+});
+
+function showImage(index){
+
+    if(index < 0){
+        currentIndex=imageArray.length-1;
+    }
+    else if(index >= imageArray.length){
+        currentIndex=0;
+    }
+    else{
+        currentIndex=index;
+    }
+
+    modalImg.src=imageArray[currentIndex].src;
+
+}
+
+document.querySelector('.next').onclick=()=>{
+    showImage(currentIndex+1);
+};
+
+document.querySelector('.prev').onclick=()=>{
+    showImage(currentIndex-1);
+};
+
+document.querySelector('.close-btn').onclick=()=>{
+    modal.classList.remove('active');
+};
+
+modal.addEventListener('click',(e)=>{
+    if(e.target===modal){
+        modal.classList.remove('active');
+    }
+});
+
+document.addEventListener('keydown',(e)=>{
+
+    if(!modal.classList.contains('active')) return;
+
+    if(e.key==="ArrowRight"){
+        showImage(currentIndex+1);
+    }
+
+    if(e.key==="ArrowLeft"){
+        showImage(currentIndex-1);
+    }
+
+    if(e.key==="Escape"){
+        modal.classList.remove('active');
+    }
+
+});
+
+</script>
+
+</body>
+</html>
